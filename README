@@ -1,0 +1,6 @@
+Matt's Operating System (MattOS)
+
+A hobby OS, just learning about some OS design and development.
+
+To Build:
+ Run 'make run' to build all the modules and link, then run the kernel.bin in qEmu.
