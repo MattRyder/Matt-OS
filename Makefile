@@ -1,6 +1,8 @@
 CFLAGS=-Wall -nostdlib -nostartfiles -nodefaultlibs
 
-BUILD_DIR = build
+INCLUDES_DIR 	= includes
+BUILD_DIR 	= build
+
 BUILD_COMMON = $(BUILD_DIR)/common
 K_OUTPUT = kernel.bin
 
@@ -35,7 +37,7 @@ monitor.o:
 	mv monitor.o $(BUILD_COMMON)/monitor.o
 
 string.o:
-	cc -c $(CFLAGS) common/string.c
+	cc -c $(CFLAGS) string/string.c
 	mv string.o $(BUILD_COMMON)/string.o
 
 

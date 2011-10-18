@@ -1,6 +1,0 @@
-# depslib dependency file v1.0
-1318871492 source:/home/matt/MattOS/src/common/common.c
-	"../includes/common.h"
-
-1317394797 /home/matt/MattOS/src/includes/common.h
-

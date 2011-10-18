@@ -1,6 +1,7 @@
-CFLAGS=-Wall -nostdlib -nostartfiles -nodefaultlibs
+CFLAGS= -Wall -nostdlib -nostartfiles -nodefaultlibs
 
-BUILD_DIR = build
+BUILD_DIR = ../build
+
 BUILD_COMMON = $(BUILD_DIR)/common
 K_OUTPUT = kernel.bin
 
@@ -17,6 +18,8 @@ run: all
 
 common: common.o monitor.o string.o
 kernel: kernel.o
+monitor: monitor.o
+string: string.o
 
 kernel.o:
 	cc $(CFLAGS) -c kernel.c
@@ -27,17 +30,16 @@ loader.o:
 	mv loader.o $(BUILD_DIR)/loader.o
 
 common.o:
-	cc -c common/common.c 
+	cc -c $(CFLAGS) common/common.c
 	mv common.o $(BUILD_COMMON)/common.o
 
 monitor.o:
-	cc -c common/monitor.c
+	cc -c $(CFLAGS) common/monitor.c
 	mv monitor.o $(BUILD_COMMON)/monitor.o
 
 string.o:
-	cc -c $(CFLAGS) common/string.c
+	cc -c $(CFLAGS) string/string.c
 	mv string.o $(BUILD_COMMON)/string.o
-
 
 clean:
 	rm -rf $(STD_OBJECTS) $(COMMON_OBJECTS) $(BUILD_DIR)/$(K_OUTPUT)

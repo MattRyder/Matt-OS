@@ -1,7 +1,7 @@
 #include "includes/monitor.h"
 #include "includes/version.h"
 #include "kernel.h"
-#include "includes/string.h
+#include "includes/string.h"
 
 /* xmain:
  * MAIN ENTRY POINT FROM THE BOOTLOADER
