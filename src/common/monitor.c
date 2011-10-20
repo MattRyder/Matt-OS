@@ -17,6 +17,7 @@ static void move_cursor()
   outb(0x3D5, cursor_location);
 }
 
+//Scrolls the screen up if the new text would go off screen.
 static void scroll()
 {
   //Char to fill the scroll with:
@@ -45,6 +46,24 @@ static void scroll()
   }
 }
 
+//Clears the screen.
+void k_monitorclear()
+{
+  u8int attrib_byte = (0 << 4) | (15 & 0x0F);
+  u16int blankc = (attrib_byte << 8) | 0x20;
+
+  int i=0;
+  for(i = 0; i < 80*25; i++)
+  {
+    video_memory[i] = blankc;
+  }
+
+  cursor_x = 0;
+  cursor_y = 0;
+  move_cursor();
+}
+
+//Puts a character to the screen.
 void k_putc(char c)
 {
   //Now set up the byte's attributes from the above:
@@ -91,22 +110,7 @@ void k_putc(char c)
 
 }
 
-void k_monitorclear()
-{
-  u8int attrib_byte = (0 << 4) | (15 & 0x0F);
-  u16int blankc = (attrib_byte << 8) | 0x20;
-
-  int i=0;
-  for(i = 0; i < 80*25; i++)
-  {
-    video_memory[i] = blankc;
-  }
-
-  cursor_x = 0;
-  cursor_y = 0;
-  move_cursor();
-}
-
+//Puts a string to the string.
 void k_puts(char* c)
 {
   int i = 0;
@@ -116,6 +120,7 @@ void k_puts(char* c)
   }
 }
 
+//Puts a char to the screen with a color attribute.
 void k_colorchar(char c, u8int attribute)
 {
   //Stick that in the higher half of the short:
@@ -162,6 +167,7 @@ void k_colorchar(char c, u8int attribute)
 
 }
 
+//Puts a string to the screen with a color attribute.
 void k_colorstring(char* s, u8int attribute)
 {
   int i = 0;

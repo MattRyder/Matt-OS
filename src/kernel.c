@@ -13,7 +13,7 @@ void xmain( void* mbd, unsigned int magic )
     //Output an error!
     kprintf("Something went wrong! Didn't get GRUB MAGIC [0x2BADB002]");
   }
-  print_welcome_message();
+  print_welcome_message(); 
 }
 
 /* dump_registers:

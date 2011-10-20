@@ -23,7 +23,11 @@ enum CGA {
   LIGHT_MAGENTA = 13,
   YELLOW        = 14,
   WHITE         = 15
-}
+};
+
+struct CGA_COLOR {
+  enum CGA COLORS;
+} COLORS;
 
 //Standardized typedefs for x86_32 platforms
 typedef unsigned int	 u32int;
