@@ -54,31 +54,28 @@ void k_putc(char c)
   u16int attribute = att_byte << 8;
   u16int* location;
 
-  //If the char's a backspace, move the cursor back one place:
-  if( c == 0x08 && cursor_x )
+  switch(c)
   {
-    cursor_x--;
+    case 0x08: //BACKSPACE
+      if(cursor_x) { cursor_x--; }
+      break;
+    case 0x09:
+      cursor_x = ( cursor_x+8 ) & ~(8-1);
+      break;
+    case '\r':
+      cursor_x = 0;
+      break;
+    case '\n':
+      cursor_x = 0;
+      cursor_y++;
+      break;
+   default:
+     location = video_memory + (cursor_y * 80 + cursor_x);
+     *location = attribute | c;
+     cursor_x++;
+     break;
   }
-  else if( c == 0x09 )
-  {
-    cursor_x = ( cursor_x+8 ) & ~(8-1);
-  }
-  else if( c == '\r' )
-  {
-    cursor_x = 0;
-  }
-  else if( c == '\n' )
-  {
-    cursor_x = 0;
-    cursor_y++;
-  }
-  else if( c >= ' ' )
-  {
-    location = video_memory + (cursor_y * 80 + cursor_x);
-    *location = attribute | c;
-    cursor_x++;
-  }
-
+  
   //Do we need a newline from hitting the EOL?
   if( cursor_x >= 80 )
   {

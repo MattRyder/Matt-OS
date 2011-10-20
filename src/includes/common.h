@@ -4,31 +4,32 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-/* CGA COLOR REFERENCE
-0 	black
-1 	blue
-2 	green
-3	cyan
-4	red
-5	magenta
-6	brown
-7	light gray
-8	gray
-9	light blue
-10 	light green
-11	light cyan
-12	light red
-13	light magenta
-14	yellow
-15	white (high intensity)
-*/
+// Simple CGA Enum for referencing colors in the OS.
+// [NOTE: Not sure if i'm compiling under C89. K&R C doesn't support enumeration!]
+enum CGA {
+  BLACK         = 0, 
+  BLUE          = 1, 
+  GREEN         = 2, 
+  CYAN          = 3,
+  RED           = 4,
+  MAGENTA       = 5,
+  BROWN         = 6,
+  LIGHT_GRAY    = 7,
+  GRAY          = 8,
+  LIGHT_BLUE    = 9,
+  LIGHT_GREEN   = 10,
+  LIGHT_CYAN    = 11,
+  LIGHT_RED     = 12,
+  LIGHT_MAGENTA = 13,
+  YELLOW        = 14,
+  WHITE         = 15
+}
 
-
-//Standardized typedefs for x86 platforms
+//Standardized typedefs for x86_32 platforms
 typedef unsigned int	 u32int;
-typedef 	     int	 s32int;
+typedef 	 int	 s32int;
 typedef unsigned short   u16int;
-typedef 	     short   s16int;
+typedef 	 short   s16int;
 typedef unsigned char	 u8int;
 typedef          char    s8int;
 
