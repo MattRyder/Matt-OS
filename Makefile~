@@ -18,6 +18,11 @@ all: kernel.o loader.o common.o monitor.o string.o
 run: all
 	qemu -kernel $(BUILD_DIR)/$(K_OUTPUT)
 
+common: common.o monitor.o string.o
+kernel: kernel.o
+monitor: monitor.o
+string: string.o
+
 kernel.o:
 	cc $(CFLAGS) -c kernel.c
 	mv kernel.o $(BUILD_DIR)/kernel.o
