@@ -4,8 +4,8 @@
 #define STRING_H
 
 #include "common.h"
-#include "stdargs.h"
-#include "monitor.h"
+#include "../includes/stdargs.h"
+#include "../includes/monitor.h"
 
 int strlen(const char* str)
 {

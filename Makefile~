@@ -10,7 +10,7 @@ K_OUTPUT = kernel.bin
 STD_OBJECTS = $(BUILD_DIR)/kernel.o $(BUILD_DIR)/loader.o $(BUILD_DIR)/gdt_flush.o
 COMMON_OBJECTS = $(BUILD_COMMON)/common.o  $(BUILD_COMMON)/monitor.o $(BUILD_COMMON)/gdt.o
 
-all: kernel.o loader.o common.o monitor.o gdt.o gdt_flush.o
+all: kernel.o loader.o common.o monitor.o gdt_flush.o
 	ld -T linker.ld -o $(K_OUTPUT) $(STD_OBJECTS) $(COMMON_OBJECTS)
 	mv $(K_OUTPUT) $(BUILD_DIR)/$(K_OUTPUT)
 

@@ -168,11 +168,11 @@ void colorchar(char c, u8int attribute)
 }
 
 //Puts a string to the screen with a color attribute.
-void colorstring(char* s, u8int attribute)
+void kcolorstring(char* s, u8int attribute)
 {
   int i = 0;
   while( s[i] )
   {
-    colorchar(s[i++], attribute);
+    kcolorchar(s[i++], attribute);
   }
 }
