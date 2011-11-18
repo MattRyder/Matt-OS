@@ -7,15 +7,13 @@ void xmain( void* mbd, unsigned int magic )
 {
   if( magic != 0x2BADB002 )
   {
-    //Output an error! [THIS IS NEVER HIT! USE ASM TO DO THIS IN LOADER.S!]
     kprintf("Something went wrong! Didn't get GRUB MAGIC [0x2BADB002]");
   }
   
-  //Initialize the Global Descriptor Table:
-  init_tables();
-  kprintf("GDT INITALIZED");
-  print_welcome_message(); 
-  
+  //Initialize the Global Descriptor Table: 
+  print_welcome_message();
+  dump_registers();
+  //init_tables();
 }
 
 /* print_welcome_message:

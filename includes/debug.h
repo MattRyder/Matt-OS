@@ -21,8 +21,7 @@ void dump_registers()
   asm volatile ( "movl %%edx, %0\n" : "=r"(edx_val) );
   
   kprintf("DEBUG: DUMPING REGISTERS\n");
-  kprintf("EAX: %i\tEBX: %i\nECX: %i\tEDX: %i\n\n",
-	  eax_val, ebx_val, ecx_val, edx_val);
+  kprintf("EAX: 0x%x\tEBX: 0x%x\nECX: 0x%x\tEDX: 0x%x\n\n", eax_val, ebx_val, ecx_val, edx_val);
 }
 
 #endif

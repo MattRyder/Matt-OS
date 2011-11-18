@@ -7,6 +7,10 @@
 #include "stdargs.h"
 #include "monitor.h"
 
+char toHexChar(s32int n); //Prototype
+char toHex(s32int n);
+
+///Returns the length of the given string
 int strlen(const char* str)
 {
   const char* s;
@@ -46,6 +50,23 @@ void kitoa(s32int n)
   }
 }
 
+void kitohex(s32int n)
+{
+  char* dictionary = "0123456789ABCDEF";
+  char hStr[20];
+  int i = 0;
+  
+  if(n==0) { hStr[i++] = '0'; }
+  
+  do {
+    hStr[i++] = dictionary[n % 16];
+  } while((n /= 16) > 0);
+  
+  int j;
+  for(j = i-1; j >= 0; j--)
+    kputc(hStr[j]);
+}
+
 void kprintf(const s8int *printf_format, ...)
 {
   va_list ap;
@@ -70,8 +91,12 @@ void kprintf(const s8int *printf_format, ...)
 	case 'i':
 	  kitoa(va_arg(ap, s32int));
 	  break;
+	case 'x':
+	  kitohex(va_arg(ap, s32int));
+	  break;
 	default:
 	  kprintf("printf: Unknown escape char: %c", printf_format[offset+1]);
+	  break;
       }
       offset += 2;
     }
@@ -84,6 +109,4 @@ void kprintf(const s8int *printf_format, ...)
   }
   va_end(ap); //End the va_list:
 }
-
-
 #endif
