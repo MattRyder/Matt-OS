@@ -11,9 +11,8 @@ void xmain( void* mbd, unsigned int magic )
   }
   
   //Initialize the Global Descriptor Table: 
+  init_tables();
   print_welcome_message();
-  dump_registers();
-  //init_tables();
 }
 
 /* print_welcome_message:

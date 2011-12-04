@@ -32,6 +32,8 @@ typedef 	 short   s16int;
 typedef unsigned char	 u8int;
 typedef          char    s8int;
 
+typedef unsigned long	 size_t;
+
 
 void outb( u16int port, u8int value );
 u8int inb( u16int port );
