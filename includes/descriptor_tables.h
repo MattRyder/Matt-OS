@@ -6,14 +6,14 @@
 #include "string.h"
 
 /* A single GDT Entry data structure */
-struct gdt_entry 
+struct gdt_entry
 {
-  u16int limit_low;
-  u16int base_low;
-  u8int base_mid;
-  u8int access;
-  u8int granularity;
-  u8int base_high;
+   u16int limit_low;           // The lower 16 bits of the limit.
+   u16int base_low;            // The lower 16 bits of the base.
+   u8int  base_middle;         // The next 8 bits of the base.
+   u8int  access;              // Access flags, determine what ring this segment can be used in.
+   u8int  granularity;
+   u8int  base_high;           // The last 8 bits of the base.
 } __attribute__((packed));
 
 struct gdt_ptr 

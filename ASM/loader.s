@@ -28,7 +28,7 @@ loader:
   push ebx			;Pass the FLAGS to the bootloader
 
   call xmain			;Then call the actual kernel.
-  cli
+  jmp hang
 
 hang:
   hlt

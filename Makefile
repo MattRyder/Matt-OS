@@ -18,7 +18,7 @@ COMMON_OBJECTS = $(BUILD_COMMON)/common.o  $(BUILD_COMMON)/monitor.o $(BUILD_COM
 
 all: $(ALL_OBJECTS)
 	ld -T linker.ld -o $(K_OUTPUT) $(STD_OBJECTS) $(COMMON_OBJECTS) $(INTERRUPT_OBJECTS)
-	mv $(K_OUTPUT) $(BUILD_DIR)/$(K_OUTPUT)
+	mv $(K_OUTPUT) $(BUILD_DIR)/scratch/$(K_OUTPUT)
 
 run: all
 	qemu -kernel $(BUILD_DIR)/$(K_OUTPUT)

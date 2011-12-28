@@ -84,13 +84,13 @@ static void init_idt()
 static void gdt_set_gate(s32int num, u32int base, u32int limit, u8int access, u8int granularity)
 {
   gdt_entries[num].base_low  = (base & 0xFFFF);
-  gdt_entries[num].base_mid  = (base >> 16) & 0xFF;
+  gdt_entries[num].base_middle  = (base >> 16) & 0xFF;
   gdt_entries[num].base_high = (base >> 24) & 0xFF;
   
   gdt_entries[num].limit_low = (limit & 0xFFFF);
   gdt_entries[num].granularity = (limit >> 16) & 0x0F; 
   
-  gdt_entries[num].granularity |= granularity & 0x0F;
+  gdt_entries[num].granularity |= granularity & 0xF0;
   gdt_entries[num].access = access;
 }
 
