@@ -1,6 +1,13 @@
-Matt's Operating System (MattOS)
+#Matt's Operating System (MattOS)#
 
-A hobby OS, just learning about some OS design and development.
+An x86 hobby OS, just learning about some OS design and development.
+Currently runs in 32-bit address space, and almost in protected mode!
 
-To Build:
- Run 'make run' to build all the modules and link, then run the kernel.bin in qEmu.
+##To Build:##
+Execute the kbuild.sh shell script in the working directory.
+
+##Prerequisites##
+* build-essential (GCC, LD et al)
+* nasm - Netwide Assembler
+* Bochs (or qEmu)
+
