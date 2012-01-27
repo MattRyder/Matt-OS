@@ -1,11 +1,11 @@
-CFLAGS= -Wall -nostdlib -nostartfiles -nodefaultlibs
+CFLAGS= -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs
 
 #Build Directory for .o and .bin
 BUILD_DIR = build
 
 #Build Directory for core objects
 BUILD_COMMON = $(BUILD_DIR)/common
-BUILD_INTERRUPTS = $(BUILD_DIR)/interrupt
+BUILD_INTERRUPTS = $(BUILD_DIR)/interrupts
 K_OUTPUT = kernel.bin
 
 ALL_OBJECTS = kernel.o loader.o  \
@@ -21,7 +21,7 @@ all: $(ALL_OBJECTS)
 	mv $(K_OUTPUT) $(BUILD_DIR)/scratch/$(K_OUTPUT)
 
 run: all
-	qemu -kernel $(BUILD_DIR)/$(K_OUTPUT)
+	qemu -kernel $(BUILD_DIR)/scratch/$(K_OUTPUT)
 
 kernel.o:
 	cc $(CFLAGS) -c kernel.c
@@ -60,4 +60,5 @@ flush_tables.o:
 	mv flush_tables.o $(BUILD_INTERRUPTS)/flush_tables.o
 
 clean:
-	rm -rf --verbose $(STD_OBJECTS) $(COMMON_OBJECTS) $(BUILD_INTERRUPTS) $(BUILD_DIR)/$(K_OUTPUT)
+	rm -rf --verbose $(STD_OBJECTS) $(COMMON_OBJECTS) $(INTERRUPT_OBJECTS) \
+    $(BUILD_DIR)/$(K_OUTPUT) $(BUILD_DIR)/scratch/$(K_OUTPUT)

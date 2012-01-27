@@ -9,7 +9,7 @@ typedef struct registers
 {
   u32int ds;
   u32int edi, esi, ebp, esp, ebx, edx, ecx, eax;
-  u32int interrupt_num, error_code;				//Interrupt number and an error code (if one available)
+  u32int int_no, err_code;				//Interrupt number and an error code (if one available)
   u32int eip, cs, eflags, useresp, ss;				//Pushed by the CPU automatically
 } registers_t;
 

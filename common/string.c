@@ -14,7 +14,7 @@ void* memcpy(void *dest, void *src, size_t size)
   while(size-- != 0)
     *d++ = *s++;
   return dest;
-} 
+}
 
 ///Returns the length of the given string
 int strlen(const char* str)
@@ -56,21 +56,25 @@ void kitoa(s32int n)
   }
 }
 
-void kitohex(s32int n)
+char* kitohex(s32int n)
 {
   char* dictionary = "0123456789ABCDEF";
+  char* hexString;
   char hStr[20];
-  int i = 0;
-  
+  int i = 0, j = 0;
+
   if(n==0) { hStr[i++] = '0'; }
-  
+
   do {
     hStr[i++] = dictionary[n % 16];
   } while((n /= 16) > 0);
-  
-  int j;
-  for(j = i-1; j >= 0; j--)
-    kputc(hStr[j]);
+
+  int x = 0;
+  for(j = i-1; j >= 0; j--) {
+    hexString[x++] = hStr[j];
+  }
+
+  return hexString;
 }
 
 void kprintf(const s8int *printf_format, ...)

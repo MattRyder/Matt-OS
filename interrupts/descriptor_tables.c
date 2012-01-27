@@ -20,6 +20,7 @@ void init_tables()
 {
   init_gdt();
   init_idt();
+  kprintf("[SYSTEM] GDT + IDT loaded....\n");
 }
 
 static void init_gdt()

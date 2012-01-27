@@ -2,5 +2,5 @@
 
 void isr_handler(registers_t registers)
 {
-  kprintf("Recieved Interrupt: %i\n", registers.interrupt_num);
+  kprintf("Recieved Interrupt: %i\n", registers.int_no);
 }

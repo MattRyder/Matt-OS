@@ -1,6 +1,6 @@
 
-#ifndef GDT_H
-#define GDT_H
+#ifndef DESCRIPTOR_TABLES_H
+#define DESCRIPTOR_TABLES_H
 
 #include "common.h"
 #include "string.h"
@@ -89,6 +89,5 @@ extern void isr28();
 extern void isr29();
 extern void isr30();
 extern void isr31();
-
 
 #endif

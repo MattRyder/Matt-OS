@@ -14,7 +14,7 @@ void* memcpy(void *dest, void *src, size_t size);
 int strlen(const char* str);
 
 void kitoa(s32int n);
-void kitohex(s32int n);
+char* kitohex(s32int n);
 
 void kprintf(const s8int *printf_format, ...);
 #endif
