@@ -12,10 +12,10 @@ void xmain( void* mbd, unsigned int magic )
   //Initialize the Global Descriptor Table:
   //init_tables();
   print_welcome_message();
-  kprintf("[SYSTEM] GRUB Magic: %s OK\n", kitohex(magic));
-  kprintf("[USER] kitohex:\n\tExpected: 0xF00\n\tActual:%s", kitohex(3840));
-
- //asm volatile ("int $1");
+  //kprintf("[SYSTEM] GRUB Magic: %s OK\n", kitohex(magic));
+  kprintf("[USER] kitohex:\n\tExpected: 0xF00\n\tActual:0x%s\n", kitohex(3840));
+  kprintf("[USER] kitohex:\n\tExpected: 0xBEEFED\n\tActual: 0x%x", 12513261);
+  //asm volatile ("int $1");
 }
 
 /* print_welcome_message:
@@ -24,5 +24,5 @@ void xmain( void* mbd, unsigned int magic )
 void print_welcome_message()
 {
   kmonitorclear();
-  kprintf("Matt's Operating System DERP - v%s\n\n", kVersion());
+  kprintf("Matt's Operating System - v%s\n\n", kVersion());
 }

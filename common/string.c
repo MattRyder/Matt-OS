@@ -61,7 +61,7 @@ char* kitohex(s32int n)
   char* dictionary = "0123456789ABCDEF";
   char* hexString;
   char hStr[20];
-  int i = 0, j = 0;
+  int i = 0, j = 0, x = 0;
 
   if(n==0) { hStr[i++] = '0'; }
 
@@ -69,10 +69,9 @@ char* kitohex(s32int n)
     hStr[i++] = dictionary[n % 16];
   } while((n /= 16) > 0);
 
-  int x = 0;
   for(j = i-1; j >= 0; j--) {
     hexString[x++] = hStr[j];
-  }
+  } hexString[x++] = '\0'; // Null terminate the string
 
   return hexString;
 }
@@ -102,7 +101,7 @@ void kprintf(const s8int *printf_format, ...)
 	  kitoa(va_arg(ap, s32int));
 	  break;
 	case 'x':
-	  kitohex(va_arg(ap, s32int));
+	  kputs(kitohex(va_arg(ap, s32int)));
 	  break;
 	default:
 	  kprintf("printf: Unknown escape char: %c", printf_format[offset+1]);
