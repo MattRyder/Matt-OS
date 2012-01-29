@@ -36,6 +36,12 @@ then
   exit 1;
 fi
 
+if [ ! -f ${scratch_dir}${kernel_binary} ];
+then
+  echo "[ERROR] failed to build kernel.bin! Terminating!";
+  exit 2; #special error code just for kernel.bin non-compilation?
+fi
+
 #compile into floppy image from kernel:
 cat $cat_args > ${built_image};
 
@@ -53,4 +59,4 @@ echo "Kernel Boot Sector: "${BOOTSECTOR};
 
 echo "Build Successful! Booting bochs:"
 #boot bochs in a new tab, keep the clutter in it's own tab:
-gnome-terminal -e "bash -c \"echo foo; echo bar; exec "${bochs}"\""
+gnome-terminal -e "bash -c \"exec "${bochs}"\""
