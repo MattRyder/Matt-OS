@@ -1,5 +1,11 @@
 #include "../includes/descriptor_tables.h"
 
+static void init_gdt();
+static void init_idt();
+
+static void gdt_set_gate(s32int, u32int, u32int, u8int, u8int);
+static void idt_set_gate(u8int, u32int, u16int, u8int);
+
 //Initializes the GDT and IDT tables
 void init_tables()
 {

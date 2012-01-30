@@ -62,11 +62,6 @@ idt_entry_t	idt_entries[256];
 
 //Prototypes:
 void init_tables();
-static void init_gdt();
-static void init_idt();
-
-static void gdt_set_gate(s32int, u32int, u32int, u8int, u8int);
-static void idt_set_gate(u8int, u32int, u16int, u8int);
 
 extern void gdt_flush(u32int);  //Flushes the GDT in the ASM routine - flush_tables.s
 extern void idt_flush(u32int);  //Flushes the IDT in the ASM routine - flush_tables.s
