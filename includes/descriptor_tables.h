@@ -16,7 +16,7 @@ struct gdt_entry
    u8int  base_high;           // The last 8 bits of the base.
 } __attribute__((packed));
 
-struct gdt_ptr 
+struct gdt_ptr
 {
   u16int limit;
   u32int base;
@@ -33,28 +33,43 @@ typedef struct gdt_ptr gdt_ptr_t;
 // A single Interrupt Descriptor Table entry
 struct str_idt_entry
 {
-  u16int base_low;			// Lower 16 bits of the address when int is called.
-  u16int base_high;			// Upper 16 bits of the address when int is called.
-  u16int selector;			// Kernel segment selector pointing to selector in the GDT.
-  u8int permanull;			// Forever zero, never used.
+  u16int base_lo;			// Lower 16 bits of the address when int is called.
+  u16int sel;			// Kernel segment selector pointing to selector in the GDT.
+  u8int always0;			// Forever zero, never used.
   u8int flags;				// Types and attributes for the IDT entry. DPL etc.
+  u16int base_hi;			// Upper 16 bits of the address when int is called.
+
 } __attribute__((packed));
 
 // A ptr to an array of IDT entries.
 // Passed to LIDT in idt_flush.s
 struct str_idt_ptr
 {
-  u32int base;				// First element [0] in the IDT entry array.
   u16int limit;
-}__attribute__((packed));
+  u32int base;				// First element [0] in the IDT entry array.
+} __attribute__((packed));
 
 
 //Typedef them for easier maintainability!
 typedef struct str_idt_entry idt_entry_t;
 typedef struct str_idt_ptr idt_ptr_t;
 
+gdt_ptr_t	gdt_ptr;
+idt_ptr_t	idt_ptr;
+
+gdt_entry_t gdt_entries[5];
+idt_entry_t	idt_entries[256];
+
 //Prototypes:
 void init_tables();
+static void init_gdt();
+static void init_idt();
+
+static void gdt_set_gate(s32int, u32int, u32int, u8int, u8int);
+static void idt_set_gate(u8int, u32int, u16int, u8int);
+
+extern void gdt_flush(u32int);  //Flushes the GDT in the ASM routine - flush_tables.s
+extern void idt_flush(u32int);  //Flushes the IDT in the ASM routine - flush_tables.s
 
 //Extern for isr handlers in assembly
 extern void isr0();

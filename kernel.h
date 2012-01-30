@@ -2,7 +2,7 @@
 #define KERNEL_H
 
 #include "includes/monitor.h"
-//#include "includes/descriptor_tables.h"
+#include "includes/descriptor_tables.h"
 #include "includes/version.h"
 #include "includes/string.h"
 

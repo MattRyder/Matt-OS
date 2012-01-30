@@ -17,20 +17,20 @@ make clean;
 make all;
 
 # create pad and check that stage1+2 exist:
-if [ ! -f "build/scratch/pad" ];
+if [ ! -f ${scratch_dir}"pad" ];
 then
   echo "[WARNING] pad file doesn't exist! Building 750b pad:\n";
   dd if=/dev/zero of=pad bs=1 count=750;
   echo "pad built!";
 fi
 
-if [ ! -f "build/scratch/stage1" ];
+if [ ! -f ${scratch_dir}"stage1" ];
 then
   echo "[ERROR] stage1 doesn't exist! Terminating!";
   exit 1;
 fi
 
-if [ ! -f "build/scratch/stage2" ];
+if [ ! -f ${scratch_dir}"stage2" ];
 then
   echo "[ERROR] stage2 doesn't exist! Terminating!";
   exit 1;

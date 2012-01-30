@@ -5,17 +5,15 @@
  */
 void xmain( void* mbd, unsigned int magic )
 {
-  if( magic != 0x2BADB002 ) {
-    kprintf("[SYSTEM] GRUB Magic: \n");
-  }
+    print_welcome_message();
 
-  //Initialize the Global Descriptor Table:
-  //init_tables();
-  print_welcome_message();
-  //kprintf("[SYSTEM] GRUB Magic: %s OK\n", kitohex(magic));
-  kprintf("[USER] kitohex:\n\tExpected: 0xF00\n\tActual:0x%s\n", kitohex(3840));
-  kprintf("[USER] kitohex:\n\tExpected: 0xBEEFED\n\tActual: 0x%x", 12513261);
-  //asm volatile ("int $1");
+    kprintf("[SYSTEM] GRUB Magic OK: 0x%s\n", kitohex(magic));
+    init_tables(); //Initialize the Global Descriptor Table
+
+    //Literally merc my OS, like a boss:
+    asm volatile("XCHG %BX, %BX");
+    asm volatile("int $3");
+
 }
 
 /* print_welcome_message:

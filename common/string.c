@@ -59,7 +59,7 @@ void kitoa(s32int n)
 char* kitohex(s32int n)
 {
   char* dictionary = "0123456789ABCDEF";
-  char* hexString;
+  char* hexString = "";
   char hStr[20];
   int i = 0, j = 0, x = 0;
 
