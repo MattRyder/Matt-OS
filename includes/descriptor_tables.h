@@ -25,10 +25,6 @@ struct gdt_ptr
 typedef struct gdt_entry gdt_entry_t;
 typedef struct gdt_ptr gdt_ptr_t;
 
-
-
-
-
 /* INTERRUPT DESCRIPTOR TABLES */
 // A single Interrupt Descriptor Table entry
 struct str_idt_entry

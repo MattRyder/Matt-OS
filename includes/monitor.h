@@ -1,4 +1,4 @@
-/* 
+/*
  * monitor.h - Manages output to the CRT/LCD monitor
  */
 

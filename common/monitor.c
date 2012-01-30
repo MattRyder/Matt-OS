@@ -94,7 +94,7 @@ void kputc(char c)
      cursor_x++;
      break;
   }
-  
+
   //Do we need a newline from hitting the EOL?
   if( cursor_x >= 80 )
   {
