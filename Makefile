@@ -17,11 +17,8 @@ INTERRUPT_OBJECTS = $(BUILD_INTERRUPTS)/descriptor_tables.o $(BUILD_INTERRUPTS)/
 COMMON_OBJECTS = $(BUILD_COMMON)/common.o  $(BUILD_COMMON)/monitor.o $(BUILD_COMMON)/string.o
 
 all: $(ALL_OBJECTS)
-	ld -T linker.ld -o $(K_OUTPUT) $(STD_OBJECTS) $(COMMON_OBJECTS) $(INTERRUPT_OBJECTS)
+	$(LD) -T linker.ld -o $(K_OUTPUT) $(STD_OBJECTS) $(COMMON_OBJECTS) $(INTERRUPT_OBJECTS)
 	mv $(K_OUTPUT) $(BUILD_DIR)/scratch/$(K_OUTPUT)
-
-run: all
-	qemu -kernel $(BUILD_DIR)/scratch/$(K_OUTPUT)
 
 kernel.o:
 	cc $(CFLAGS) -c kernel.c

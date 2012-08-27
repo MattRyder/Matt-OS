@@ -10,8 +10,7 @@ void xmain( void* mbd, unsigned int magic )
     kprintf("[SYSTEM] GRUB Magic OK: 0x%s\n", kitohex(magic));
     init_tables(); //Initialize the Global Descriptor Table
 
-    asm volatile("int $0x04");
-
+    kprintf("Bloop Bleep Bloop!");
 }
 
 /* print_welcome_message:

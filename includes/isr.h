@@ -10,12 +10,12 @@ typedef struct registers
   u32int ds;
   u32int edi, esi, ebp, esp, ebx, edx, ecx, eax;
   u32int int_no, err_code;				//Interrupt number and an error code (if one available)
-  u32int eip, cs, eflags, useresp, ss;				//Pushed by the CPU automatically
+  u32int eip, cs, eflags, useresp, ss;	//Pushed by the CPU automatically
 } registers_t;
 
 void isr_handler(registers_t registers);
 
-unsigned char* isr_message[] =
+char* isr_message[] =
 {
     "DIVISION BY ZERO",
     "DEBUG EXCEPTION",
