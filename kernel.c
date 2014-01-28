@@ -5,12 +5,11 @@
  */
 void xmain( void* mbd, unsigned int magic )
 {
-    print_welcome_message();
+  print_welcome_message();
+  kprintf("[SYSTEM] Multiboot: 0x%s\n", mbd);
 
-    kprintf("[SYSTEM] GRUB Magic OK: 0x%s\n", kitohex(magic));
-    init_tables(); //Initialize the Global Descriptor Table
-
-    kprintf("Bloop Bleep Bloop!");
+  kprintf("[SYSTEM] GRUB Magic OK: 0x%s\n", kitohex(magic));
+  init_tables(); //Initialize the Global Descriptor Table
 }
 
 /* print_welcome_message:
