@@ -1,7 +1,10 @@
 #!/bin/bash
 # MATT OS Boot Script - boot MattOS from CLI.
 
+##
+# launch
 # Used to boot whatever emulator we're using with special rules for OSX.
+##
 function launch() {
   #Launch emulator, depending on OS:
 
@@ -15,30 +18,11 @@ function launch() {
   fi
 }
 
-# Grab the host platform:
-UNAME=$(uname)
-
-#Setup some vars depending on Host OS:
-if [ ${UNAME} = "Darwin" ]; then
-  #Setup for building on OS X: 
-  export CC=/usr/bin/gcc-4.2
-  export CXX=/usr/bin/g++-4.2
-  export CPP=/usr/bin/cpp-4.2
-  export LD=/usr/bin/gcc-4.2
-fi
-
-# CONFIG PARAMETERS
-build_dir="build/"
-scratch_dir=${build_dir}"scratch/"
-harddisk_image="mattos.img"
-kernel_binary="kernel.bin"
-built_image=${build_dir}${harddisk_image}
-cat_args=${scratch_dir}"stage1 "${scratch_dir}"stage2 "${scratch_dir}"pad "${scratch_dir}${kernel_binary}
-
-clear
-
-# create pad and check that stage1+2 exist:
-function checkPrerequisiteFiles() {
+##
+# checkPrerequisites
+# Make sure all the files and programs require are onboard
+##
+function checkPrerequisites() {
   req_files=("stage1" "stage2" "kernel.bin")
 
   if [ ! -f ${scratch_dir}"pad" ];
@@ -56,11 +40,34 @@ function checkPrerequisiteFiles() {
   done
 }
 
+
+# Grab the host platform:
+UNAME=$(uname)
+
+#Setup some vars depending on Host OS:
+if [ ${UNAME} = "Darwin" ]; then
+  #Setup for building on OS X: 
+  export CC=/usr/bin/gcc-4.2
+  export CXX=/usr/bin/g++-4.2
+  export CPP=/usr/bin/cpp-4.2
+  export LD=/usr/bin/gcc-4.2
+fi
+
+build_dir="build/"
+scratch_dir=${build_dir}"scratch/"
+harddisk_image="mattos.img"
+kernel_binary="kernel.bin"
+built_image=${build_dir}${harddisk_image}
+cat_args=${scratch_dir}"stage1 "${scratch_dir}"stage2 "${scratch_dir}"pad "${scratch_dir}${kernel_binary}
+
+clear
+
+
 make clean
 make all
 
 #make sure padding, stage1/2 and kernel.bin exist:
-checkPrerequisiteFiles
+checkPrerequisites
 
 #compile into floppy image from kernel:
 cat $cat_args > ${built_image}
