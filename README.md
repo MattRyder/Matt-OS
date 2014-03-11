@@ -11,3 +11,7 @@ Execute the kbuild.sh shell script in the working directory.
 * nasm - Netwide Assembler
 * Bochs (or qEmu)
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/MattRyder/matt-os/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
